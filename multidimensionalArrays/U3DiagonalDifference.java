@@ -14,19 +14,13 @@ public class U3DiagonalDifference {
         for (int rows = 0; rows < sizeOfMatrix; rows++) {
             int[] line = Arrays.stream(scanner.nextLine().split("\\s+"))
                     .mapToInt(Integer::parseInt).toArray();
-            int count = 0;
-            for (int cols = 0; cols < sizeOfMatrix; cols++) {
-                matrix[rows][cols] = line[count];
-                count++;
-            }
+            System.arraycopy(line, 0, matrix[rows], 0, sizeOfMatrix);
         }
+        
         for (int rows = 0; rows < sizeOfMatrix; rows++) {
-            for (int cols = 0; cols < sizeOfMatrix; cols++) {
-                if (rows == cols) {
-                    leftSum += matrix[rows][cols];
-                }
-            }
+            leftSum += matrix[rows][rows];
         }
+        
         int i = 0;
         for (int cols = sizeOfMatrix - 1; cols >= 0; cols--) {
             rightSum += matrix[i][cols];
